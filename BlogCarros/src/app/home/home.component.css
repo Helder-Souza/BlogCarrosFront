@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Faster+One&display=swap');
+
+.parallax{
+    background-image: url('https://i.imgur.com/3HZooMQ.jpg');
+
+    min-height: 500px;
+
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h1 {
+    font-family:'Faster One', cursive;
+    color: blue;
+    
+}
