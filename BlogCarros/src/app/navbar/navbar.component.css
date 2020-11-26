@@ -5,3 +5,6 @@
     font-size: 23pt;
     font-family:'Faster One', cursive;
 }
+a {
+    cursor: pointer;
+}
