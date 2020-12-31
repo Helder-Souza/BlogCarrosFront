@@ -5,3 +5,12 @@ h3 {
     font-family:'Faster One', cursive;
     color: #8B4513;
 }
+
+.btn-pub {
+    border-color: #8B4513;
+    color: #8B4513;
+}
+.btn-pub:hover {
+    background-color: #8B4513;
+    color: white;
+}

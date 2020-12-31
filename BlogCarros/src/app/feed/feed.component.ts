@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment.prod';
 import { Postagem } from '../model/Postagem';
 import { Tema } from '../model/Tema';
 import { AlertasService } from '../service/alertas.service';
@@ -18,6 +20,7 @@ export class FeedComponent implements OnInit {
   postagem: Postagem = new Postagem()
   listaPostagens: Postagem[]
   titulo: string
+  imagem: string
 
   tema: Tema = new Tema()
   listaTemas: Tema[]
@@ -27,10 +30,19 @@ export class FeedComponent implements OnInit {
   constructor(
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private alert: AlertasService
+    private alert: AlertasService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+
+    let token = environment.token
+
+    if(token == ''){
+      this.router.navigate(['/login'])
+      this.alert.showAlertInfo('Faça o login antes de entrar no feed...')
+    }
+
     window.scroll(0,0)
 
     this.findAllPostagens()
@@ -47,7 +59,7 @@ export class FeedComponent implements OnInit {
     this.tema.id = this.idTema
     this.postagem.tema = this.tema
 
-    if(this.postagem.titulo == null || this.postagem.texto == null || this.postagem.tema == null) {
+    if(this.postagem.titulo == null || this.postagem.texto == null || this.postagem.tema == null || this.postagem.imagem == null) {
       this.alert.showAlertDanger('Preencha todos os campos antes de publicar!')
     }else {
       this.postagemService.postPostagem(this.postagem).subscribe((resp: Postagem) => {
